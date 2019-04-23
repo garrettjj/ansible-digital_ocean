@@ -26,7 +26,6 @@
 - debug:
     msg: "Droplet IP is {{ droplet.droplet.ip_address }}"
 
-
 - name: Adding new Droplet to in-memory inventory
   add_host:
     name: "{{ server_hostname }}"
@@ -35,3 +34,9 @@
     ansible_ssh_user: root
     ansible_ssh_private_key_file: "{{ lookup('file', '~/.ssh/id_rsa') }}"
   changed_when: false
+
+- name: Waiting for port 22 to respond
+  wait_for:
+    state: started
+    host: "{{ droplet.droplet.ip_address }}"
+    port: 22
