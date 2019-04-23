@@ -1,0 +1,13 @@
+---
+# Can be commented out if providing manually
+server_hostname: 
+
+# For creating a FQDN which creates rDNS
+server_domain:
+
+# DigitalOcean API settings
+do_api_token: 
+do_region_id: 
+do_image_id:
+do_size_id: 
+do_ssh_keys:

@@ -1,0 +1,31 @@
+---
+# Ansible playbook exploring the process of creating a Droplet on DigitalOcean
+#
+# By Garrett Jansen
+#
+# Requires: 
+#       * dopy (>= Python 2.6)
+
+- name: Provision a new server using the DigitalOcean API
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Create a new Droplet
+    digital_ocean:
+      state: present
+      command: droplet
+      name: ansiblework.jansen.sh
+      api_token: 1745f76b3b5cb207d377883aef993afcf0023e34fc346efff133ede2a4b6f88d
+      size_id: s-1vcpu-1gb
+      region_id: nyc3
+      image_id: centos-7-x64
+      #wait_timeout: 500
+      ssh_key_ids: 24331192
+    register: new_droplet
+
+  - debug:
+          msg: "ID is {{ new_droplet.droplet.id }}"
+
+  - debug:
+          msg: "IP is {{ new_droplet.droplet.ip_address }}"

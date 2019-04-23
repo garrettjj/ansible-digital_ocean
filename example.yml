@@ -1,0 +1,17 @@
+---
+# Testing a full run of the SSH & Droplet creation script
+#
+# Requires:
+#       * dopy (>= Python 2.6)
+
+- hosts: localhost
+  connection: local
+  become: no
+
+  vars_prompt:
+          name: "server_hostname"
+          prompt: "What would you like the server to be called?"
+          private: no
+  
+  roles:
+          - digital_ocean

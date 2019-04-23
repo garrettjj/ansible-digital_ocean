@@ -1,0 +1,23 @@
+---
+# Ensuring that the SSH key is added to your DigitalOcean account
+#
+# Requires:
+#       * dopy (>= Python 2.6)
+
+- name: Checking if SSH key is added to DigitalOcean account
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Add SSH key to DigitalOcean account
+    ignore_errors: yes
+    digital_ocean:
+      state: present
+      command: ssh
+      name: "Ansible SSH key"
+      ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+      api_token: 1745f76b3b5cb207d377883aef993afcf0023e34fc346efff133ede2a4b6f88d
+    register: droplet
+
+  - debug:
+          msg: "New SSH key ID is {{ droplet.ssh_key.id }}"
