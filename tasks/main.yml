@@ -28,9 +28,9 @@
 
 - name: Adding new Droplet to in-memory inventory
   add_host:
-    name: "{{ server_hostname }}"
+    hostname: "{{ droplet.droplet.ip_address }}"
     groups: server
-    ansible_ssh_host: "{{ droplet.droplet.ip_address }} "
+    #ansible_ssh_host: "{{ droplet.droplet.ip_address }} "
     ansible_ssh_user: root
     ansible_ssh_private_key_file: "{{ lookup('file', '~/.ssh/id_rsa') }}"
   changed_when: false
