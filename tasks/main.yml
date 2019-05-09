@@ -31,6 +31,7 @@
     hostname: "{{ droplet.droplet.ip_address }}"
     groups: server
     #ansible_ssh_host: "{{ droplet.droplet.ip_address }} "
+    ansible_python_interpreter: /usr/bin/python3
     ansible_ssh_user: root
     ansible_ssh_private_key_file: "{{ lookup('file', '~/.ssh/id_rsa') }}"
   changed_when: false
