@@ -37,7 +37,7 @@
   changed_when: false
 
 - name: Creating a DNS entry for Droplet
-  command: bash add-record.sh "{{ server_domain }}" "{{ server_hostname }}" "{{ droplet.droplet.ip_address }}" "{{ do_api_token }}"
+  command: bash {{ role_path }}/files/dns/add-record.sh "{{ server_domain }}" "{{ server_hostname }}" "{{ droplet.droplet.ip_address }}" "{{ do_api_token }}"
   #digital_ocean_domain:
     #state: present
     #api_token: "{{ do_api_token }}"
