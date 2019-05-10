@@ -39,6 +39,7 @@
 - name: Creating a DNS entry for Droplet
   digital_ocean_domain:
     state: present
+    api_token: "{{ do_api_token }}"
     name: "{{ server_hostname }}.{{ server_domain }}"
     ip: "{{ droplet.droplet.ip_address }}"
 
