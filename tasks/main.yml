@@ -1,4 +1,4 @@
----
+#---
 # tasks file for digital_ocean
 
 - name: Check if vars/private.yml is present
@@ -37,11 +37,12 @@
   changed_when: false
 
 - name: Creating a DNS entry for Droplet
-  digital_ocean_domain:
-    state: present
-    api_token: "{{ do_api_token }}"
-    name: "{{ server_hostname }}.{{ server_domain }}"
-    ip: "{{ droplet.droplet.ip_address }}"
+  command: bash add-record.sh "{{ server_domain }}" "{{ server_hostname }}" "{{ droplet.droplet.ip_address }}" "{{ do_api_token }}"
+  #digital_ocean_domain:
+    #state: present
+    #api_token: "{{ do_api_token }}"
+    #name: "{{ server_hostname }}.{{ server_domain }}"
+    #ip: "{{ droplet.droplet.ip_address }}"
 
 - name: Waiting for port 22 to respond
   wait_for:
